@@ -1,0 +1,147 @@
+2019-02-27 09:24:31 [scrapy.utils.log] INFO: Scrapy 1.5.0 started (bot: novels)
+2019-02-27 09:24:31 [scrapy.utils.log] INFO: Versions: lxml 4.2.1.0, libxml2 2.9.5, cssselect 1.0.3, parsel 1.4.0, w3lib 1.19.0, Twisted 18.4.0, Python 3.6.3 (v3.6.3:2c5fed8, Oct  3 2017, 18:11:49) [MSC v.1900 64 bit (AMD64)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0h  27 Mar 2018), cryptography 2.2.2, Platform Windows-10-10.0.17134-SP0
+2019-02-27 09:24:31 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'novels', 'CONCURRENT_REQUESTS': 100, 'LOG_FILE': 'scrapy.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'novels.spiders', 'SPIDER_MODULES': ['novels.spiders']}
+2019-02-27 09:24:31 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2019-02-27 09:24:32 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2019-02-27 09:24:32 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2019-02-27 09:24:32 [scrapy.middleware] INFO: Enabled item pipelines:
+['novels.pipelines.NovelPipeline',
+ 'novels.pipelines.NovelDetailsPipeline',
+ 'novels.pipelines.ChapterPipeline',
+ 'novels.pipelines.ContentPipeline']
+2019-02-27 09:24:32 [scrapy.core.engine] INFO: Spider opened
+2019-02-27 09:24:33 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2019-02-27 09:24:56 [chapter] INFO: 正在更新日期。。。
+2019-02-27 09:25:47 [chapter] INFO: 插入失败：insert into chapter (novel_id, id, volume_name, name, word_counts, create_datetime) values('1040809','451249198','地狱篇','第三千六百二十三章 身为救世主的我性格怎么可能有问题',3213,'2019-02-20  04:42'),('1040809','451459752','地狱篇','第三千六百二十四章 超好听和超难听',3133,'2019-02-22  04:48'),('1040809','451757587','地狱篇','第三千六百二十五章 日常换班',3115,'2019-02-25  04:50'),('3489766','451613869','正文卷','第2699章 装了B还想跑？',2104,'2019-02-23  17:20'),('3489766','451613975','正文卷','第2700 神木井',2061,'2019-02-23  17:22')
+2019-02-27 09:25:47 [scrapy.extensions.logstats] INFO: Crawled 8 pages (at 8 pages/min), scraped 5 items (at 5 items/min)
+2019-02-27 09:25:47 [chapter] INFO: 正在更新日期。。。
+2019-02-27 10:30:09 [scrapy.utils.log] INFO: Scrapy 1.5.0 started (bot: novels)
+2019-02-27 10:30:09 [scrapy.utils.log] INFO: Versions: lxml 4.2.1.0, libxml2 2.9.5, cssselect 1.0.3, parsel 1.4.0, w3lib 1.19.0, Twisted 18.4.0, Python 3.6.3 (v3.6.3:2c5fed8, Oct  3 2017, 18:11:49) [MSC v.1900 64 bit (AMD64)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0h  27 Mar 2018), cryptography 2.2.2, Platform Windows-10-10.0.17134-SP0
+2019-02-27 10:30:09 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'novels', 'CONCURRENT_REQUESTS': 100, 'LOG_FILE': 'scrapy.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'novels.spiders', 'SPIDER_MODULES': ['novels.spiders']}
+2019-02-27 10:30:09 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2019-02-27 10:30:10 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2019-02-27 10:30:10 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2019-02-27 10:30:10 [scrapy.middleware] INFO: Enabled item pipelines:
+['novels.pipelines.NovelPipeline',
+ 'novels.pipelines.NovelDetailsPipeline',
+ 'novels.pipelines.ChapterPipeline',
+ 'novels.pipelines.ContentPipeline']
+2019-02-27 10:30:10 [scrapy.core.engine] INFO: Spider opened
+2019-02-27 10:30:11 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2019-02-27 10:30:48 [chapter] INFO: success
+2019-02-27 10:31:10 [chapter] INFO: success
+2019-02-27 10:31:11 [scrapy.extensions.logstats] INFO: Crawled 118 pages (at 118 pages/min), scraped 1066 items (at 1066 items/min)
+2019-02-27 10:31:22 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2019-02-27 10:31:22 [scrapy.core.engine] INFO: Closing spider (shutdown)
+2019-02-27 10:31:23 [chapter] INFO: 剩余插入数据插入成功
+2019-02-27 10:31:23 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 50914,
+ 'downloader/request_count': 153,
+ 'downloader/request_method_count/GET': 153,
+ 'downloader/response_bytes': 75224994,
+ 'downloader/response_count': 153,
+ 'downloader/response_status_count/200': 153,
+ 'dupefilter/filtered': 101585,
+ 'finish_reason': 'shutdown',
+ 'finish_time': datetime.datetime(2019, 2, 27, 2, 31, 23, 592853),
+ 'item_scraped_count': 1469,
+ 'log_count/INFO': 12,
+ 'response_received_count': 153,
+ 'scheduler/dequeued': 153,
+ 'scheduler/dequeued/memory': 153,
+ 'scheduler/enqueued': 153,
+ 'scheduler/enqueued/memory': 153,
+ 'start_time': datetime.datetime(2019, 2, 27, 2, 30, 11, 681284)}
+2019-02-27 10:31:23 [scrapy.core.engine] INFO: Spider closed (shutdown)
+2019-03-01 12:58:19 [scrapy.utils.log] INFO: Scrapy 1.5.0 started (bot: novels)
+2019-03-01 12:58:19 [scrapy.utils.log] INFO: Versions: lxml 4.2.1.0, libxml2 2.9.5, cssselect 1.0.3, parsel 1.4.0, w3lib 1.19.0, Twisted 18.4.0, Python 3.6.3 (v3.6.3:2c5fed8, Oct  3 2017, 18:11:49) [MSC v.1900 64 bit (AMD64)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0h  27 Mar 2018), cryptography 2.2.2, Platform Windows-10-10.0.17134-SP0
+2019-03-01 12:58:19 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'novels', 'CONCURRENT_REQUESTS': 100, 'LOG_FILE': 'scrapy.log', 'LOG_LEVEL': 'INFO', 'NEWSPIDER_MODULE': 'novels.spiders', 'SPIDER_MODULES': ['novels.spiders']}
+2019-03-01 12:58:20 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2019-03-01 12:58:21 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2019-03-01 12:58:21 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2019-03-01 12:58:21 [scrapy.middleware] INFO: Enabled item pipelines:
+['novels.pipelines.NovelPipeline',
+ 'novels.pipelines.NovelDetailsPipeline',
+ 'novels.pipelines.ChapterPipeline',
+ 'novels.pipelines.ContentPipeline']
+2019-03-01 12:58:21 [scrapy.core.engine] INFO: Spider opened
+2019-03-01 12:58:22 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2019-03-01 12:59:22 [scrapy.extensions.logstats] INFO: Crawled 254 pages (at 254 pages/min), scraped 30311 items (at 30311 items/min)
+2019-03-01 13:00:23 [scrapy.extensions.logstats] INFO: Crawled 491 pages (at 237 pages/min), scraped 73618 items (at 43307 items/min)
+2019-03-01 13:00:51 [scrapy.core.engine] INFO: Closing spider (finished)
+2019-03-01 13:00:52 [chapter] INFO: 剩余插入数据插入成功
+2019-03-01 13:00:52 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 199878,
+ 'downloader/request_count': 622,
+ 'downloader/request_method_count/GET': 622,
+ 'downloader/response_bytes': 176900954,
+ 'downloader/response_count': 622,
+ 'downloader/response_status_count/200': 622,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2019, 3, 1, 5, 0, 52, 20321),
+ 'item_scraped_count': 96979,
+ 'log_count/INFO': 10,
+ 'response_received_count': 622,
+ 'scheduler/dequeued': 622,
+ 'scheduler/dequeued/memory': 622,
+ 'scheduler/enqueued': 622,
+ 'scheduler/enqueued/memory': 622,
+ 'start_time': datetime.datetime(2019, 3, 1, 4, 58, 22, 464575)}
+2019-03-01 13:00:52 [scrapy.core.engine] INFO: Spider closed (finished)
