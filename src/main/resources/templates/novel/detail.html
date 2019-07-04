@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/assets/css/novel_detail.css}">
+    <title th:text="|${novel.author}_${novel.name}|">
+    </title>
+
+</head>
+<body>
+<!--引入导航栏-->
+<div th:replace="commons/topbar::topbar"></div>
+<div class="top-bg-box" style="background-image: url('/assets/img/xuanhuan_bg.jpg')" th:style="|background-image:url('/assets/img/${novel.categoryId}.jpg')|"></div>
+
+<!--引入登录模态窗口-->
+<div th:replace="user/login/login::login"></div>
+
+<div class="container book-detail">
+    <div class="book-img">
+        <a href="#" th:href="|/info/${novel.id}/${start}|">
+            <img src="https://bookcover.yuewen.com/qdbimg/349573/1013552688/180" th:src="${novel.coverImage}">
+        </a>
+    </div>
+    <div class="book-info">
+        <div>
+            <h1 class="ml-1">
+                <em th:text="${novel.name}">悠闲修仙系统</em>
+                <span th:text="|${novel.author} 著|">白袍飞扬 著</span>
+                <a href="#" th:href="'/category/'+${novel.categoryId}" class="badge badge-warning ml-2" th:text="${cname}">玄幻</a>
+            </h1>
+        </div>
+
+        <div class="book-words mt-4">
+            <span class="badge badge-dark ml-2" th:utext="${wordCounts}">83.64</span>
+            <span class="badge badge-primary ml-2" th:utext="${chapterCounts}">315<cite>章</cite></span>
+            <span class="badge badge-danger ml-2" th:utext="${tm}">23445<cite>月票</cite></span>
+            <span class="badge badge-success ml-2" th:utext="${rm}">23445<cite>周推荐</cite></span>
+        </div>
+        <div class="mt-5 ml-2 begin">
+            <a href="#" class="btn btn-danger btn-lg" th:href="|/info/${novel.id}/${start}|" th:if='${bookshelf}==null'>开始阅读</a>
+            <div th:if="${session.user}!=null" style="display: inline-block">
+                <a th:href="|/bookshelf/${novel.id}|" class="btn btn-success btn-lg ml-4" th:if='${bookshelf}==null'>加入书架</a>
+                <a th:href="|${novel.id}/${book.getchapterId()}|" class="btn btn-danger btn-lg ml-4" th:if='${bookshelf}!=null'>继续阅读</a>
+                <a th:href="|/bookshelf/remove/${novel.id}|" class="btn btn-success btn-lg ml-4" th:if='${bookshelf}!=null'>取消订阅</a>
+            </div>
+            <div sec:authorize="isAuthenticated()" style="display: inline-block">
+                <a th:href="|/bookshelf/${novel.id}|" class="btn btn-success btn-lg ml-4" th:if='${bookshelf}==null'>加入书架</a>
+                <a th:href="|${novel.id}/${book.getchapterId()}|" class="btn btn-danger btn-lg ml-4" th:if='${bookshelf}!=null'>继续阅读</a>
+                <a th:href="|/bookshelf/remove/${novel.id}|" class="btn btn-success btn-lg ml-4" th:if='${bookshelf}!=null'>取消订阅</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="desc-chapter container mt-2">
+    <div class="description ml-2">
+        <p th:utext="${description}">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简介：</span>你还在为稀有宠物和极品装备发愁吗？看我带着飞机头，蜘蛛坦克，死神4000，速刷副本，虐杀BOSS！什么风骚的走位，什么神级意识，在我的机械炮台带来的金属风暴面前都是渣，且看我站撸到天明！当你还在为猎杀巨龙而喜悦时，我只是笑而不语！“少年，听说过高达吗？咳，是魔能机甲，龙在巨大的魔能机甲面前也不过是小虫子。”这就是神级机械猎人的传奇！书友群，喜欢聊天的兄弟姐妹可以在这里集结
+            427590697（满）萌新请加2群630694286VIP群，577209540，全订或者粉丝值弟子以上进
+        </p>
+    </div>
+    <div class="volume-wrap mt-4">
+        <div class="volume card" th:each="v:${volumes}">
+            <div class="card-body">
+                <h3 class="card-title" th:utext="${v.volumeInfo}">
+                    正文卷<i>·</i>共88章<em class="count ml-2">本卷共<cite>202414</cite>字</em>
+                </h3>
+                <ul class="list-group mr-auto row">
+                    <li class="list-group-item d-flex  align-items-center col-sm-4" th:each="c:${v.volume}">
+                        <a href="#" target="_blank" th:text="${c.name}" th:title="|首发时间：${c.createDatetime} 章节字数：${c.wordCounts}|" th:href="|/info/${novel.id}/${c.id}|"></a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--页脚-->
+<footer class="footer" th:replace="commons/footer::footer">
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="commons/js::js">
+
+</div>
+
+<!--topbar js-->
+<script type="text/javascript" th:replace="commons/topbar::js">
+</script>
+</body>
+</html>

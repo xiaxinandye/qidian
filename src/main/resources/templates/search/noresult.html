@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/assets/css/category.css}">
+    <title>
+        搜索页面
+    </title>
+
+</head>
+
+<body>
+
+<!--导航栏-->
+<!--引入 top bar-->
+<div th:replace="commons/topbar::topbar">
+</div>
+
+<div class="container align-items-center">
+    <form class="form my-2 my-lg-0 pd-3" action="/search" method="get">
+        <input class="form-control mr-lg-2" type="search" placeholder="输入关键词，如作者、书名" name="kw">
+        <button class="btn btn-danger my-2 mr-lg-4 mt-2" type="submit">搜索</button>
+    </form>
+    <div class="jumbotron" style="background-color: #e3f2fd">
+        <div class="container mt-2" style="font-size: 20px;">
+            暂无结果，请重新输入关键词~
+        </div>
+    </div>
+</div>
+<!--页脚-->
+<!--<footer class="footer" th:replace="commons/footer::footer">-->
+<!--</footer>-->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="commons/js::js">
+
+</div>
+
+
+<!--topbar js-->
+<script type="text/javascript" th:replace="commons/topbar::js">
+</script>
+</body>
+
+</html>

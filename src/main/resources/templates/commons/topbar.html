@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Title</title>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light mb-2 fixed-top" style="background-color: #e3f2fd;" th:fragment = "topbar">
+    <a class="navbar-brand" href="/" height="20px;" style="font-family:PingFangSC-Regular,'-apple-system',Simsun;font-weight: bolder">夏夜小说</a>
+    <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item mr-auto">
+                <!--下拉列表-->
+                <div class="dropdown">
+
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="cat-drop" style="cursor: pointer">作品分类
+                    </a>
+                    <div class="dropdown-menu" style="background-color: #e3f2fd;margin: 0rem"
+                         aria-labelledby="cat-drop">
+                        <a class="dropdown-item" href="#" th:href="@{/category/21}" target="_blank">玄幻</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/22}" target="_blank">仙侠</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/4}" target="_blank">都市</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/10}" target="_blank">悬疑灵异</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/9}" target="_blank">科幻</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/1}" target="_blank">奇幻</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/12}" target="_blank">二次元</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/2}" target="_blank">武侠</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/5}" target="_blank">历史</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/6}" target="_blank">军事</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/7}" target="_blank">游戏</a>
+                        <a class="dropdown-item" href="#" th:href="@{/category/8}" target="_blank">体育</a>
+
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rank" target="_blank">排行</a>
+            </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="#">全部作品</a>-->
+            <!--</li>-->
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0 pd-3" action="/search" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="作者、书名"id="searchtext" name="kw">
+            <button class="btn btn-primary my-2 my-sm-0 mr-sm-4" type="submit" id="search">搜索</button>
+
+            <div sec:authorize="isAnonymous()">
+                <div th:if="${session.user} == null">
+                    <button type="button" class="btn btn-outline-info mr-sm-2"  data-toggle="modal" data-target="#registerForm">注册</button>
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#loginForm">登录</button>
+                </div>
+                <!--登录-->
+                <div th:if="${session.user} != null">
+                    <a th:href="|/bookshelf/${session.user}/all|" id="user"><span th:text="${session.user}" id="uname"></span></a>
+                </div>
+            </div>
+            <!--登录-->
+            <div sec:authorize="isAuthenticated()">
+                <a th:href="|/bookshelf/
+${#authentication.name}/all|" id="user">
+                    <span sec:authentication="principal.username" id="uname"></span>
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</nav>
+
+<script type="text/javascript" th:fragment="js">
+    $(function () {
+        $('.dropdown').mouseover(function () {
+            $(this).children('.dropdown-toggle').dropdown('toggle');
+        });
+
+        $('.dropdown').mouseout(function () {
+            $(this).children('.dropdown-toggle').dropdown('toggle');
+        });
+
+        $('.dropdown').click(function () {
+            $(this).children('.dropdown-toggle').dropdown('dispose');
+        });
+        //注册
+        $('#username').blur(function () {
+            if($(this).val().length > 0) {
+                if($(this).val().length < 4 || $(this).val().length >16) {
+                    if ($(this).hasClass('is-valid')) {
+                        $(this).removeClass('is-valid');
+                    }
+                    $(this).addClass('is-invalid');
+                    if ($("#username-feedback").hasClass('valid-feedback')) {
+                        $("#username-feedback").removeClass('valid-feedback');
+                    }
+                    $("#username-feedback").addClass('invalid-feedback').text('用户名的长度需在4-16之间~');
+                }
+                else {
+                    var url = '/user/' + $(this).val().trim();
+                    $.get(url,  (data) => {
+                        if (data == 'no') {
+                            if ($(this).hasClass('is-invalid')) {
+                                $(this).removeClass('is-invalid');
+                            }
+                            $(this).addClass('is-valid');
+                            if ($("#username-feedback").hasClass('invalid-feedback')) {
+                                $("#username-feedback").removeClass('invalid-feedback');
+                            }
+                            $("#username-feedback").addClass('valid-feedback');
+                            $("#username-feedback").text('该用户名可用~');
+                        } if (data == 'yes') {
+                            if ($(this).hasClass('is-valid')) {
+                                $(this).removeClass('is-valid');
+                            }
+                            $(this).addClass('is-invalid');
+                            if ($("#username-feedback").hasClass('valid-feedback')) {
+                                $("#username-feedback").removeClass('valid-feedback');
+                            }
+                            $("#username-feedback").addClass('invalid-feedback');
+                            $("#username-feedback").text('该用户名已存在！');
+                        }
+                    });
+                }
+            }
+        });
+        $('#password').blur(function () {
+            if($(this).val().length > 0) {
+                if ($(this).val().length < 8 || $(this).val().length > 16) {
+                    if ($(this).hasClass('is-valid')) {
+                        $(this).removeClass('is-valid');
+                    }
+                    $(this).addClass('is-invalid');
+                    if ($("#password-feedback").hasClass('valid-feedback')) {
+                        $("#password-feedback").removeClass('valid-feedback');
+                    }
+                    $("#password-feedback").addClass('invalid-feedback').text('密码的长度需在8-16之间~');
+                } else {
+                    if ($(this).hasClass('is-invalid')) {
+                        $(this).removeClass('is-invalid');
+                    }
+                    $(this).addClass('is-valid');
+                    if ($("#password-feedback").hasClass('invalid-feedback')) {
+                        $("#password-feedback").removeClass('invalid-feedback');
+                    }
+                    $("#password-feedback").addClass('valid-feedback').text('密码格式正确~');
+                }
+                if($('#ack-password').val().length > 0) {
+                    $('#ack-password').val('');
+                    if ($('#ack-password').hasClass('is-valid')) {
+                        $('#ack-password').removeClass('is-valid');
+                    }
+                    $('#ack-password').addClass('is-invalid');
+                    if ($("#ack-password-feedback").hasClass('valid-feedback')) {
+                        $("#ack-password-feedback").removeClass('valid-feedback');
+                    }
+                    $("#ack-password-feedback").addClass('invalid-feedback').text('请重新输入确认密码~');
+                }
+            }
+        });
+        $('#ack-password').blur(function () {
+           if($(this).val().length > 0) {
+               if($(this).val() != $('#password').val()) {
+
+                   if ($(this).hasClass('is-valid')) {
+                       $(this).removeClass('is-valid');
+                   }
+                   $(this).addClass('is-invalid');
+                   if ($("#ack-password-feedback").hasClass('valid-feedback')) {
+                       $("#ack-password-feedback").removeClass('valid-feedback');
+                   }
+                   $("#ack-password-feedback").addClass('invalid-feedback').text('两次输入的密码不一致！');
+               } else {
+                   if ($(this).hasClass('is-invalid')) {
+                       $(this).removeClass('is-invalid');
+                   }
+                   $(this).addClass('is-valid');
+                   if ($("#ack-password-feedback").hasClass('invalid-feedback')) {
+                       $("#ack-password-feedback").removeClass('invalid-feedback');
+                   }
+                   $("#ack-password-feedback").addClass('valid-feedback').text('密码一致~');
+               }
+           }
+        });
+        $('#btn-register').click(function () {
+            if($('#username').val().length > 0 && $('#password').val().length > 0 &&
+                $('#ack-password').val().length > 0) {
+                if($('#username').hasClass('is-valid') && $('#password').hasClass('is-valid') &&$('#ack-password').hasClass('is-valid')) {
+                    return true
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        //本地登录
+        $('#btn-login').click(function () {
+          //发送ajax确定是否登录成功
+            var url = '/login';
+
+            $.post(url, function (data) {
+                if(data == 'success') {
+                    window.location.href = '/';
+                } else {
+                    alert("登录失败，请重试~");
+                }
+            });
+        });
+
+        //github
+        $('.oauthLogin').click(function () {
+            //获取当前相对路径的url
+            var url = GetUrlRelativePath();
+            // var newUrl = "https://github.com/login/oauth/authorize?client_id=50d7f61132da7f8574a1&redirect_uri=http://localhost:8080/oauth/github/callback&state=" + url;
+
+            var newUrl = "https://github.com/login/oauth/authorize?client_id=50d7f61132da7f8574a1&redirect_uri=https://www.xiaxinandye.cn/oauth/github/callback&state=" + url;
+
+            window.location.href = newUrl; //跳转到去三方授权
+        });
+
+        //qq
+        $('.oauthQQLogin').click(function () {
+            //获取当前相对路径的url
+            var url = GetUrlRelativePath();
+            // var newUrl = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101570628&redirect_uri=http://localhost:8080/oauth/qq/callback&scope=get_user_info&state=" + url;
+
+            var newUrl = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101570628&redirect_uri=https://www.xiaxinandye.cn/oauth/qq/callback&scope=get_user_info&state=" + url;
+
+            window.location.href = newUrl; //跳转到去三方授权
+        });
+
+        function GetUrlRelativePath()
+        {
+            var url = document.location.toString();
+            var arrUrl = url.split("//");
+
+            var start = arrUrl[1].indexOf("/");
+            var relUrl = arrUrl[1].substring(start);//stop省略，截取从start开始到结尾的所有字符
+
+            if(relUrl.indexOf("?") != -1){
+                relUrl = relUrl.split("?")[0];
+            }
+            return relUrl;
+        }
+        if ($('#loginFail').length > 0) {
+            $('#loginForm').modal('show');
+        }
+    });
+</script>
+</body>
+</html>

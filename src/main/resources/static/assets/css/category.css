@@ -1,0 +1,94 @@
+body {
+    padding-top: 4.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: #262626;
+    outline: 0;
+}
+a:hover{text-decoration:none;}
+
+.card-link {
+    color: #343a40
+}
+
+.card-link:hover {
+    color: red
+}
+.jumbotron {
+    font-family: PingFangSC-Regular,'-apple-system',Simsun;
+}
+img {
+    width: 102px;
+    height: 136px;
+}
+span.badge {
+    position: absolute;
+    top: 10px;
+    left: 18px;
+}
+
+.book-info {
+    margin-top: 5px;
+}
+.book-info h5 {
+    font: 18px/24px PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;;
+}
+
+.book-info h5 a:hover {
+    color:red;
+}
+.author {
+    font-family: PingFangSC-Regular,'-apple-system',Simsun;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.page-item.active {
+    pointer-events:none;
+}
+
+p.intro {
+    font-family: PingFangSC-Regular,'-apple-system',Simsun;
+    font-size: 14px;
+    line-height: 24px;
+    overflow: hidden;
+    height: 48px;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+p.update {
+    line-height: 22px;
+    font-family: PingFangSC-Regular,'-apple-system',Simsun;
+    font-size: 12px;
+}
+
+p.update span, p.update em {
+    color: #b5b5b5;
+}
+
+p.update em {
+    font-family: Arial;
+    margin: 0 5px;
+}
+
+.card img {
+    /*动画过渡时间*/
+    transition: 0.3s;
+}
+
+.card img:hover {
+    transform: scale(1.1);   /*放大*/
+}
+
+.badge {
+    z-index: 2;
+}
+
+.book-img {
+    display: block;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
+}

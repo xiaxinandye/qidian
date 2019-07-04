@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/assets/css/rank.css}">
+    <title>人气榜单</title>
+</head>
+<body>
+<!--引入导航栏-->
+<div th:replace="commons/topbar::topbar"></div>
+
+<!--引入登录模态窗口-->
+<div th:replace="user/login/login::login"></div>
+
+<!--引入注册模态窗口-->
+<div th:replace="user/register::register"></div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body" style="background-color: #e3f2fd;">
+            <h4 class="car-title">人气榜单</h4>
+
+            <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
+                <ul class="navbar-nav nav-tabs">
+                    <li class="nav-item" th:class="${cid}==-1?'nav-item active':'nav-item'">
+                        <a class="nav-link navbar-text" href="?cid=-1">全部分类</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==21?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=21">玄幻</a>
+                    </li>
+
+                    <li class="nav-item" th:class="${cid}==22?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=22">仙侠</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==4?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=4">都市</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==9?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=9">科幻</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==1?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=1">奇幻</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==10?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=10">悬疑灵异</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==12?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=12">二次元</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==2?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=2">武侠</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==6?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=6">军事</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==5?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=5">历史</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==7?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=7">游戏</a>
+                    </li>
+                    <li class="nav-item" th:class="${cid}==8?'nav-item active':'nav-item'">
+                        <a class="nav-link" href="?cid=8">体育</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!--排行 卡片-->
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">月票排行榜   <a class="more fade" href="/rank/yuepiao" th:href="|@{/rank/yuepiao}?cid=${cid}|">更多&raquo; </a> </h5>
+
+                                <ul class="list-group mr-auto">
+                                    <li class="list-group-item d-flex  align-items-center" th:each="t, iterStat:${tm}" th:switch="${iterStat.count}">
+
+                                        <span class="badge badge-pill badge-danger mr-2" th:case="1">1</span>
+                                        <span class="badge badge-pill badge-warning mr-2" th:case="2">2</span>
+                                        <span class="badge badge-pill badge-success mr-2" th:case="3">3</span>
+                                        <span class="badge badge-pill badge-secondary mr-1" th:case="10">10</span>
+                                        <span class="badge badge-pill badge-secondary mr-2" th:case="*" th:text="${iterStat.count}">5</span>
+                                        <a href="#" class="card-link" th:text="${t.name}" th:href="|/info/${t.id}|">我有一座恐怖屋</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">推荐票排行榜   <a class="more fade" href="/rank/recom" th:href="|@{/rank/recom}?cid=${cid}|">更多&raquo; </a></h5>
+                                <ul class="list-group mr-auto">
+                                    <li class="list-group-item d-flex  align-items-center" th:each="r, iterStat:${rm}" th:switch="${iterStat.count}">
+
+                                        <span class="badge badge-pill badge-danger mr-2" th:case="1">1</span>
+                                        <span class="badge badge-pill badge-warning mr-2" th:case="2">2</span>
+                                        <span class="badge badge-pill badge-success mr-2" th:case="3">3</span>
+                                        <span class="badge badge-pill badge-secondary mr-1" th:case="10">10</span>
+                                        <span class="badge badge-pill badge-secondary mr-2" th:case="*" th:text="${iterStat.count}">5</span>
+                                        <a href="#" class="card-link" th:text="${r.name}" th:href="|/info/${r.id}|">我有一座恐怖屋</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </h5>
+    </div>
+</div>
+</div>
+<!--页脚-->
+<!--<footer class="footer" th:replace="commons/footer::footer">-->
+<!--</footer>-->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="commons/js::js">
+
+</div>
+
+
+<!--topbar js-->
+<script type="text/javascript" th:replace="commons/topbar::js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.row .card').mouseover(function () {
+            $(this).find('.more').addClass('show');
+        });
+        $('.row .card').mouseout(function () {
+            $(this).find('.more').removeClass('show');
+        });
+    });
+</script>
+
+</body>
+</html>

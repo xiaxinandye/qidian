@@ -1,0 +1,40 @@
+body {
+    padding-top: 4em;
+    font-size: 18px;
+}
+.navbar-brand {
+    font-family: '-apple-system', Simsun;
+    font-weight: bolder;
+}
+
+.btn-group {
+    margin-left: 0.15em;
+}
+
+.navbar-brand {
+    margin-left: 2%;
+}
+
+.navbar-brand:nth-child(1) {
+    margin-left: 25%;
+}
+
+h3 {
+    margin-bottom: 1em;
+}
+
+.skin-yangpi {
+    background: url('/assets/img/skin-default-t.ece62.jpg') no-repeat center top, url('/assets/img/skin-default-b.79f06.jpg') no-repeat center bottom, url('/assets/img/skin-default-m.35905.jpg') repeat-y center 119px;
+    background-size: 100%;
+}
+
+.skin-huyan {
+    background-color: #C7EDCC;
+}
+.skin-morning {
+    background-color: white;
+}
+.skin-night {
+    background-color: black;
+    color: white;
+}

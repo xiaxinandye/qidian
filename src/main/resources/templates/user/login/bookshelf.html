@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>
+        我的书架
+    </title>
+    <style type="text/css">
+        body {
+            padding-top: 4.5rem;
+        }
+
+        .card-link {
+            color: #343a40
+        }
+
+        .card-link:hover {
+            color: red
+        }
+        h5 {
+            font-family: PingFangSC-Regular,'-apple-system',Simsun;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--导航栏-->
+<!--引入 top bar-->
+<div th:replace="commons/topbar::topbar">
+</div>
+
+<div class="container">
+    <!--注销-->
+    <a class="btn btn-danger btn-sm mb-3" href="/logout">注销</a>
+    <div th:if="${#lists.isEmpty(bookShelfShowList)}">
+        你的书架空空如也~
+    </div>
+    <div class="card-deck justify-content-around">
+        <div style="width: 145px;" th:each="book:${bookShelfShowList}">
+            <a th:href="|/info/${book.novelId}/${book.chapterId}|">
+                <img class="card-img-top" src="https://bookcover.yuewen.com/qdbimg/349573/1011058239/180" th:src="${book.imageUrl}">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${book.bookName}">伏天氏</h5>
+                <small class="text-muted" th:text="${book.lastChapterName}">100章 剑来</small><br>
+                <small class="text-muted" th:text="${book.lastReadTime}">三天前</small>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!--引入登录模态窗口-->
+<div th:replace="user/login/login::login"></div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="commons/js::js">
+
+</div>
+
+
+<!--topbar js-->
+<script type="text/javascript" th:replace="commons/topbar::js">
+</script>
+</body>
+
+</html>

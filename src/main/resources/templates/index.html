@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>
+        个人小说 仅供学习交流之用
+    </title>
+    <style type="text/css">
+        body {
+            padding-top: 4.5rem;
+        }
+
+        .card-link {
+            color: #343a40
+        }
+
+        .card-link:hover {
+            color: red
+        }
+        h5 {
+            font-family: PingFangSC-Regular,'-apple-system',Simsun;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--导航栏-->
+<!--引入 top bar-->
+<div th:replace="commons/topbar::topbar">
+</div>
+
+<!--引入登录模态窗口-->
+<div th:replace="user/login/login::login"></div>
+
+<!--引入注册模态窗口-->
+<div th:replace="user/register::register"></div>
+
+<!--轮播图-->
+<div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block"
+                     src="https://qidian.qpic.cn/qidian_common/349573/daf6c7c43b8a71799b52c6c5dc3fc5cd/0"
+                     alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block"
+                     src="https://qidian.qpic.cn/qidian_common/349573/445ebe75000bb1df8389276e87f85d77/0"
+                     alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block"
+                     src="https://qidian.qpic.cn/qidian_common/349573/04527c19ffb5770cc3f6c9722562152d/0"
+                     alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+
+<!--排行 卡片-->
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">月票排行榜</h5>
+                    <ul class="list-group mr-auto">
+                        <li class="list-group-item d-flex  align-items-center" th:each="t, iterStat:${tm}" th:switch="${iterStat.count}">
+
+                            <span class="badge badge-pill badge-danger mr-2" th:case="1">1</span>
+                            <span class="badge badge-pill badge-warning mr-2" th:case="2">2</span>
+                            <span class="badge badge-pill badge-success mr-2" th:case="3">3</span>
+                            <span class="badge badge-pill badge-secondary mr-1" th:case="10">10</span>
+                            <span class="badge badge-pill badge-secondary mr-2" th:case="*" th:text="${iterStat.count}">5</span>
+                            <a href="#"  th:href="|/info/${t.id}|" class="card-link" th:text="${t.name}">我有一座恐怖屋</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">推荐票排行榜</h5>
+                    <ul class="list-group mr-auto">
+                        <li class="list-group-item d-flex  align-items-center" th:each="r, iterStat:${rm}" th:switch="${iterStat.count}">
+
+                            <span class="badge badge-pill badge-danger mr-2" th:case="1">1</span>
+                            <span class="badge badge-pill badge-warning mr-2" th:case="2">2</span>
+                            <span class="badge badge-pill badge-success mr-2" th:case="3">3</span>
+                            <span class="badge badge-pill badge-secondary mr-1" th:case="10">10</span>
+                            <span class="badge badge-pill badge-secondary mr-2" th:case="*" th:text="${iterStat.count}">5</span>
+                            <a href="#" class="card-link" th:href="|/info/${r.id}|" th:text="${r.name}">我有一座恐怖屋</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--页脚-->
+<footer class="footer" th:replace="commons/footer::footer">
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="commons/js::js">
+
+</div>
+
+
+<!--topbar js-->
+<script type="text/javascript" th:replace="commons/topbar::js">
+</script>
+</body>
+
+</html>

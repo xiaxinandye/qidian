@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev # 选择是开发环境配置还是生产环境配置
+
+--- # 开发环境
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: 云数据库MySQL地址（若你本地存储也可以换成访问本地数据库的链接）
+    username: 用户名
+    password: 密码
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: # elasticsearch服务器节点地址：端口
+  jpa:
+    show-sql: true
+server:
+  port: 8080
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰转换规则
+#logging:
+#  level:
+#    com.yunche.novels.mapper.*: debug
+
+--- # 生产环境
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: 云数据库MySQL地址（若你本地存储也可以换成访问本地数据库的链接）
+    username: 用户名
+    password: 密码
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: # elasticsearch服务器节点地址：端口
+server: # 上线有关配置
+  port: 443
+  ssl:
+    key-store: classpath:www.xiaxinandye.cn.jks
+    key-store-password: 336xqj9vvg
+    key-store-type: JKS
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰转换规则
+

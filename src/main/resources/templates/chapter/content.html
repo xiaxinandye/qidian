@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/assets/css/content.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title th:text="${c.name}">
+    </title>
+
+</head>
+<body class="skin-huyan">
+<nav class="navbar navbar-expand-md navbar-light mb-2 fixed-top" style="background-color: #e3f2fd;">
+
+    <!--登录-->
+    <div th:if="${session.user} != null" class="navbar-brand">
+        <a th:href="|/bookshelf/${session.user}/all|" id="user"><span th:text="${session.user}" id="uname"></span></a>
+    </div>
+
+    <!--登录-->
+    <div sec:authorize="isAuthenticated()" class="navbar-brand">
+        <a th:href="|/bookshelf/
+${#authentication.name}/all|" id="user">
+            <span sec:authentication="principal.username" id="uname"></span>
+        </a>
+    </div>
+
+    <a class="navbar-brand" href="#" th:href="|/info/${nid}|">返回目录</a>
+    <div th:if="${session.user}!=null">
+        <a th:href="|/bookshelf/${nid}|" class="btn btn-success ml-4" th:if='${bookshelf}==null'>加入书架</a>
+        <a th:href="|/bookshelf/remove/${nid}|" class="btn btn-success ml-4" th:if='${bookshelf}!=null'>取消订阅</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <a th:href="|/bookshelf/${nid}|" class="btn btn-success ml-4" th:if='${bookshelf}==null'>加入书架</a>
+        <a th:href="|/bookshelf/remove/${nid}|" class="btn btn-success ml-4" th:if='${bookshelf}!=null'>取消订阅</a>
+    </div>
+        <span class="navbar-brand">阅读设置</span>
+        <a class="navbar-toggler btn btn-outline-info" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+           aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-cog"></i>
+        </a>
+
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" id="set-color">
+                背景颜色
+            </button>
+            <div class="dropdown-menu" aria-labelledby="set-color">
+                <a class="dropdown-item skin" href="javascript:void(0)" data-skin="skin-huyan">护眼</a>
+                <a class="dropdown-item skin" href="javascript:void(0)" data-skin="skin-yangpi">羊皮</a>
+                <a class="dropdown-item skin" href="javascript:void(0)" data-skin="skin-moring">白天</a>
+                <a class="dropdown-item skin" href="javascript:void(0)" data-skin="skin-night">夜晚</a>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" id="set-font-family">
+                字体样式
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item font-style" href="javascript:void(0)" data-skin="'Microsoft Yahei'">雅黑</a>
+                <a class="dropdown-item font-style" href="javascript:void(0)" data-skin="PingFangSC-Regular,'-apple-system',Simsun">宋体</a>
+                <a class="dropdown-item font-style" href="javascript:void(0)" data-skin="Kaiti">楷书</a>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" id="set-font-size">
+                字体大小
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item font-sz" href="javascript:void(0)" data-skin="75%">x 0.75</a>
+                <a class="dropdown-item font-sz" href="javascript:void(0)" data-skin="100%">x 1</a>
+                <a class="dropdown-item font-sz" href="javascript:void(0)" data-skin="125%">x 1.25</a>
+                <a class="dropdown-item font-sz" href="javascript:void(0)" data-skin="150%">x 1.5</a>
+                <a class="dropdown-item font-sz" href="javascript:void(0)" data-skin="200%">x 2</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+<input type="hidden" id="nid" th:value="${nid}"/>
+    <div class="row content-wrap">
+        <div class="col-sm-10 offset-sm-1 chapter-content">
+
+            <h3 th:text="${c.name}" class="ctitle" th:data="${c.id}">1.那一年的封龙岙</h3>
+            <div class="p-content" th:utext="${c.content}">
+                    2333
+            </div>
+            <input type="hidden" th:value="|/chapterajax/${nid}/${c.id}|" class="ajax-chapter">
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<footer class="footer" th:replace="commons/footer::footer">
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<div th:replace="commons/js::js">
+
+</div>
+<script src="/assets/js/content.js">
+</script>
+
+</body>
+</html>

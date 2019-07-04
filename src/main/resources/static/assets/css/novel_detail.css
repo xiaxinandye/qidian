@@ -1,0 +1,133 @@
+.top-bg-box {
+    position: absolute;
+    top: 55px;
+    height: 255px;
+    width: 100%;
+    background-position: 50% 0;
+    background-size: cover;
+}
+.book-detail {
+    position: relative;
+    z-index: 2;
+    min-height: 220px;
+    margin-top: 150px;
+    background: #fff;
+}
+.book-img {
+    float: left;
+    width: 144px;
+    height: 192px;
+    margin: 15px 15px 0;
+}
+.book-img a {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 1px 6px rgba(0,0,0,.35), 0 0 5px #f9f2e9 inset;
+}
+
+.book-img img {
+    transition: 0.3s;
+    width: 100%;
+    height: 100%;
+}
+
+.book-img img:hover {
+    transform: scale(1.1);   /*放大*/
+}
+
+.book-info {
+    float: left;
+    margin-top: 15px;
+}
+
+.book-info h1 {
+    font: 700 28px/38px PingFangSC-Regular, HelveticaNeue-Light, 'Helvetica Neue Light', 'Microsoft YaHei', sans-serif;
+    overflow: hidden;
+    height: 38px;
+    margin-bottom: 12px;
+}
+
+em,i {
+    font-style: normal;
+}
+a {
+    text-decoration: none;
+    color: #262626;
+    outline: 0;
+}
+
+a:hover {
+    text-decoration: none;
+    color: red;
+}
+.book-info h1 span {
+    font: 14px/20px Arial;
+    margin-left: 20px;
+}
+.book-info h1 a {
+    font-size: 12px;
+}
+.book-words {
+    font: 20px/22px Arial;
+    letter-spacing:1px;
+}
+cite {
+    font-style: normal;
+}
+span cite {
+    font-size: 12px;
+    margin-left: 3px;
+}
+.book-info .begin {
+    font: 14px/34px Arial;
+}
+.description p {
+    max-width: 900px;
+    /*font-size: 14px;*/
+}
+.description {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.volume h3 {
+    font: 700 18px/24px PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;
+    overflow: hidden;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #666;
+}
+
+.volume h3 .count {
+    font: 14px/19px PingFangSC-Regular,'-apple-system',Simsun;
+    color: #666;
+}
+.count cite {
+    font-family: Arial;
+    margin: 0 3px;
+}
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    margin-top: 0.5em;
+    overflow: hidden;
+}
+.list-group {
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.volume {
+    border: none;
+    border-left: 1px solid rgba(0,0,0,.125);
+    border-right: 1px solid rgba(0,0,0,.125);
+}
+
+.list-group-item a {
+    overflow: hidden;
+    max-width: 260px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+

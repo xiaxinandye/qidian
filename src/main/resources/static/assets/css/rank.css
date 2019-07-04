@@ -1,0 +1,25 @@
+body {
+    padding-top: 4.5rem;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+.card-link {
+    color: #343a40
+}
+
+.card-link:hover {
+    color: red
+}
+.more {
+    font: 12px/1 Arail,PingFangSC-Regular,'-apple-system',Simsun;
+    color: #3f5a93;
+    /*display: none;*/
+}
+h4, h5 {
+    font-family: PingFangSC-Regular,'-apple-system',Simsun;
+    font-weight: bolder;
+}
